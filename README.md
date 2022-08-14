@@ -10,5 +10,3 @@ java -jar ./FireCalculator.jar
 ```
 
 You can change settings in the **application.properties** file - it's read from the same directory as the jar file, if present.
-
-_The Polish vocabulary in the code and the properties file is due to the fact that I wanted the use of the application to be readable for my fellows._

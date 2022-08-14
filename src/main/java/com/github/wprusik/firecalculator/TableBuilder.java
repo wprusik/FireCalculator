@@ -12,7 +12,7 @@ public class TableBuilder {
     private static final String COLUMN_SEPARATOR = "  ";
     private final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MMM yyyy");
 
-    private static final String[] HEADERS = {"Data", "Przychód", "Oszczędności"};
+    private static final String[] HEADERS = {"Date", "Income", "Savings"};
 
     void generateTable(double cel) {
         System.out.println("\n");
@@ -30,22 +30,22 @@ public class TableBuilder {
             if (month % CAPITALIZATION_PERIOD_MONTHS == 0) {
                 double interest = total * (YEARLY_INTEREST_RATE * (CAPITALIZATION_PERIOD_MONTHS / 12F) / 100F);
                 total += interest;
-                printRow("Kapitalizacja odsetek", interest, total, PURPLE);
+                printRow("Interest capitalization", interest, total, PURPLE);
                 if (month % 12 == 0 && total < cel) {
                     printHeaders(currentDate.getYear());
                 }
             }
         }
 
-        System.out.printf("\n\nMuszę oszczędzać przez %s%s%s miesięcy, czyli %s%s%s lat,",
+        System.out.printf("\n\nI need to save for %s%s%s months, which is %s%s%s years,",
                 BLUE.code(), month, RESET.code(), BLUE.code(), month / 12, RESET.code());
-        System.out.printf("\nby odłożyć potrzebne %s%s%s%s%s\n\n", UNDERLINE.code(), BOLD.code(), GREEN.code(), CURRENCY_FORMAT.format(total), RESET.code());
+        System.out.printf("\nto save required %s%s%s%s%s\n\n", UNDERLINE.code(), BOLD.code(), GREEN.code(), CURRENCY_FORMAT.format(total), RESET.code());
         System.out.println();
     }
 
     private void printHeaders(int year) {
         StringBuilder str = new StringBuilder("\n\n");
-        str.append(String.format("%s%sROK %s ----------------------------------------------------------------------%s%s\n",
+        str.append(String.format("%s%sYEAR %s ----------------------------------------------------------------------%s%s\n",
                 BLUE.code(), BOLD.code(), year, RESET.code(), BLUE.code()));
         for (String header : HEADERS) {
             str.append(withSpace(header)).append(COLUMN_SEPARATOR);
