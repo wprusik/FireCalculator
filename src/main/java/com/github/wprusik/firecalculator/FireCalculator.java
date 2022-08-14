@@ -3,7 +3,6 @@ package com.github.wprusik.firecalculator;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.util.Scanner;
 
 import static com.github.wprusik.firecalculator.Ansi.*;
 
@@ -38,33 +37,6 @@ public class FireCalculator {
         double target = getInvestmentTarget();
         System.out.printf("\n\nTarget: %s%s%s%s\n", BOLD.code(), RED.code(), CURRENCY_FORMAT.format(target), RESET.code());
         new TableBuilder().generateTable(target);
-    }
-
-    private void readInput() {
-        Scanner sc = new Scanner(System.in);
-        System.out.printf("\nMonthly savings (%s): ", CURRENCY);
-        MONTHLY_INCOME = readNumber(MONTHLY_INCOME, sc);
-        System.out.print("Annual interest rate (%): ");
-        YEARLY_INTEREST_RATE = readNumber(YEARLY_INTEREST_RATE, sc);
-        System.out.print("Capitalization period (months): ");
-        CAPITALIZATION_PERIOD_MONTHS = readNumber(CAPITALIZATION_PERIOD_MONTHS, sc).intValue();
-        System.out.print("Average annual rate of return on accumulated capital (%): ");
-        AVERAGE_ANNUAL_CAPITAL_RETURN_RATE = readNumber(AVERAGE_ANNUAL_CAPITAL_RETURN_RATE, sc);
-        System.out.printf("Planned monthly withdraw (%s): ", CURRENCY);
-        MONTHLY_WITHDRAW = readNumber(MONTHLY_WITHDRAW, sc);
-        System.out.print("Whole withdrawal period (years): ");
-        WITHDRAW_PERIOD_YEARS = readNumber(WITHDRAW_PERIOD_YEARS, sc).intValue();
-        System.out.println("Thank you! Let's see what it looks like\n\n");
-    }
-
-    private Double readNumber(Number defaultValue, Scanner sc) {
-        String text = sc.nextLine();
-        try {
-            return text.isBlank() ? defaultValue.doubleValue() : Double.parseDouble(text);
-        } catch (NumberFormatException ex) {
-            System.out.println("Try again: ");
-            return readNumber(defaultValue, sc);
-        }
     }
 
     private double getInvestmentTarget() {
