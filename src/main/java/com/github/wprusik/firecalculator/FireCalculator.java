@@ -16,7 +16,7 @@ public class FireCalculator {
     public static void calculate() throws IOException {
         System.out.printf("\nMonthly deposit: %s%s%s", YELLOW.code(), CURRENCY_FORMAT.format(MONTHLY_INCOME), RESET.code());
         System.out.printf("\nYearly interest rate: %s %%", YEARLY_INTEREST_RATE);
-        System.out.printf("\nCapitalization period: %s mies.", CAPITALIZATION_PERIOD_MONTHS);
+        System.out.printf("\nCapitalization period: %s months", CAPITALIZATION_PERIOD_MONTHS);
         System.out.printf("\n\nI plan to withdraw %s%s%s every month", GREEN.code(), CURRENCY_FORMAT.format(MONTHLY_WITHDRAW), RESET.code());
         System.out.printf("\nFor %d years", WITHDRAW_PERIOD_YEARS);
         System.out.printf("\nSummary withdraw: %s", CURRENCY_FORMAT.format(12 * WITHDRAW_PERIOD_YEARS * MONTHLY_WITHDRAW));
