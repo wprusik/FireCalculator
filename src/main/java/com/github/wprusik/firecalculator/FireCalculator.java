@@ -13,7 +13,7 @@ public class FireCalculator {
         calculate();
     }
 
-    public static void calculate() {
+    public static void calculate() throws IOException {
         System.out.printf("\nMonthly deposit: %s%s%s", YELLOW.code(), CURRENCY_FORMAT.format(MONTHLY_INCOME), RESET.code());
         System.out.printf("\nYearly interest rate: %s %%", YEARLY_INTEREST_RATE);
         System.out.printf("\nCapitalization period: %s mies.", CAPITALIZATION_PERIOD_MONTHS);
@@ -24,6 +24,13 @@ public class FireCalculator {
         double target = getInvestmentTarget();
         System.out.printf("\n\nTarget: %s%s%s%s\n", BOLD.code(), RED.code(), CURRENCY_FORMAT.format(target), RESET.code());
         TableBuilder.generateTable(target);
+        waitForFinish();
+    }
+
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    private static void waitForFinish() throws IOException {
+        System.out.printf(">> %sPress anything to close the application%s <<", WHITE.code(), RESET.code());
+        System.in.read();
     }
 
     private static double getInvestmentTarget() {
