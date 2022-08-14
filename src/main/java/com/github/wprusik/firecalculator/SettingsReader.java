@@ -12,7 +12,7 @@ import static java.lang.String.valueOf;
 
 public class SettingsReader {
 
-    static void readSettingsFromFile() throws IOException {
+    static void readSettings() throws IOException {
         readResourceProperties();
         readUserProperties();
     }

@@ -21,12 +21,12 @@ public class FireCalculator {
     static String CURRENCY = CURRENCY_FORMAT.getCurrency().getDisplayName();
 
     public static void main(String... args) throws IOException {
-        new FireCalculator().calculate();
+        System.out.printf("\n\nWelcome to\n%s%s\n%s%s%s\n", RED.code(), FIRE_LOGO.code(), BLUE.code(), FIRE_SUBLOGO.code(), RESET.code());
+        SettingsReader.readSettings();
+        calculate();
     }
 
-    public void calculate() throws IOException {
-        System.out.printf("\n\nWelcome to\n%s%s\n%s%s%s\n", RED.code(), FIRE_LOGO.code(), BLUE.code(), FIRE_SUBLOGO.code(), RESET.code());
-        SettingsReader.readSettingsFromFile();
+    public static void calculate() {
         System.out.printf("\nMonthly deposit: %s%s%s", YELLOW.code(), CURRENCY_FORMAT.format(MONTHLY_INCOME), RESET.code());
         System.out.printf("\nYearly interest rate: %s %%", YEARLY_INTEREST_RATE);
         System.out.printf("\nCapitalization period: %s mies.", CAPITALIZATION_PERIOD_MONTHS);
@@ -39,11 +39,11 @@ public class FireCalculator {
         new TableBuilder().generateTable(target);
     }
 
-    private double getInvestmentTarget() {
+    private static double getInvestmentTarget() {
         return getSequenceValue(0D, WITHDRAW_PERIOD_YEARS);
     }
 
-    private double getSequenceValue(double currentValue, int searchElementNumber) {
+    private static double getSequenceValue(double currentValue, int searchElementNumber) {
         if (searchElementNumber == 0) {
             return 0D;
         }
@@ -53,7 +53,7 @@ public class FireCalculator {
         return currentValue;
     }
 
-    private double getInterestRate() {
+    private static double getInterestRate() {
         return (100D + AVERAGE_ANNUAL_CAPITAL_RETURN_RATE) / 100D;
     }
 }

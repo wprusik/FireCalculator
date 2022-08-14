@@ -10,11 +10,11 @@ public class TableBuilder {
 
     private static final int COLUMN_WIDTH = 30;
     private static final String COLUMN_SEPARATOR = "  ";
-    private final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MMM yyyy");
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MMM yyyy");
 
     private static final String[] HEADERS = {"Date", "Income", "Savings"};
 
-    void generateTable(double cel) {
+    static void generateTable(double cel) {
         System.out.println("\n");
         double total = 0;
         int month = 0;
@@ -43,7 +43,7 @@ public class TableBuilder {
         System.out.println();
     }
 
-    private void printHeaders(int year) {
+    private static void printHeaders(int year) {
         StringBuilder str = new StringBuilder("\n\n");
         str.append(String.format("%s%sYEAR %s ----------------------------------------------------------------------%s%s\n",
                 BLUE.code(), BOLD.code(), year, RESET.code(), BLUE.code()));
@@ -53,7 +53,7 @@ public class TableBuilder {
         System.out.println(str.append(RESET.code()));
     }
 
-    private void printRow(String prefix, double income, double total, Ansi colour) {
+    private static void printRow(String prefix, double income, double total, Ansi colour) {
         String str = (colour != null ? colour.code() : "") +
                 withSpace(prefix) + COLUMN_SEPARATOR +
                 withSpace(income) + COLUMN_SEPARATOR +
@@ -62,17 +62,17 @@ public class TableBuilder {
         System.out.println(str);
     }
 
-    private String withSpace(String str) {
+    private static String withSpace(String str) {
         return str + getSpace(str.length());
     }
 
-    private String withSpace(Double value) {
+    private static String withSpace(Double value) {
         int formatterExtension = (",00 " + CURRENCY).length() + Double.valueOf(Math.pow(value, 1 / 1000F)).intValue();
         int length = Double.valueOf(Math.log10(value)).intValue() + 1 + formatterExtension;
         return CURRENCY_FORMAT.format(value) + getSpace(length);
     }
 
-    private String getSpace(int wordLength) {
+    private static String getSpace(int wordLength) {
         return " ".repeat(Math.max(0, COLUMN_WIDTH - wordLength));
     }
 
