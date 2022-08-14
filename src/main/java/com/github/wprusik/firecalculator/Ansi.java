@@ -26,7 +26,7 @@ public enum Ansi {
             ▐░▌ ▄         ▄▄▄▄█░█▄▄▄▄  ▄ ▐░▌      ▐░▌  ▄ ▐░█▄▄▄▄▄▄▄▄▄\s
             ▐░▌▐░▌       ▐░░░░░░░░░░░▌▐░▌▐░▌       ▐░▌▐░▌▐░░░░░░░░░░░▌
              ▀  ▀         ▀▀▀▀▀▀▀▀▀▀▀  ▀  ▀         ▀  ▀  ▀▀▀▀▀▀▀▀▀▀▀\s
-                                                                     \s""".indent(11), true),
+                                                                     \s""".indent(11), false),
 
     FIRE_SUBLOGO("""
              ██████╗ █████╗ ██╗      ██████╗██╗   ██╗██╗      █████╗ ████████╗ ██████╗ ██████╗\s
@@ -35,22 +35,22 @@ public enum Ansi {
             ██║     ██╔══██║██║     ██║     ██║   ██║██║     ██╔══██║   ██║   ██║   ██║██╔══██╗
             ╚██████╗██║  ██║███████╗╚██████╗╚██████╔╝███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║
              ╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
-                                                                                              \s""", true);
+                                                                                              \s""", false);
 
     private final String code;
-    private final boolean worksOnWindows;
+    private final boolean requiresAnsiSupport;
 
     Ansi(String code) {
         this.code = code;
-        this.worksOnWindows = false;
+        this.requiresAnsiSupport = true;
     }
 
-    Ansi(String code, boolean worksOnWindows) {
+    Ansi(String code, boolean requiresAnsiSupport) {
         this.code = code;
-        this.worksOnWindows = worksOnWindows;
+        this.requiresAnsiSupport = requiresAnsiSupport;
     }
 
     public String code() {
-        return Settings.ANSI_ENABLED || worksOnWindows ? code : "";
+        return Settings.ANSI_ENABLED || !requiresAnsiSupport ? code : "";
     }
 }

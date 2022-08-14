@@ -8,7 +8,7 @@ import static com.github.wprusik.firecalculator.Settings.*;
 public class FireCalculator {
 
     public static void main(String... args) throws IOException {
-        System.out.printf("\n\nWelcome to\n%s%s\n%s%s%s\n", RED.code(), FIRE_LOGO.code(), BLUE.code(), FIRE_SUBLOGO.code(), RESET.code());
+        System.out.printf("\n\nWelcome to%s\n%s\n%s%s%s\n", RED.code(), FIRE_LOGO.code(), BLUE.code(), FIRE_SUBLOGO.code(), RESET.code());
         SettingsReader.readSettings();
         calculate();
     }

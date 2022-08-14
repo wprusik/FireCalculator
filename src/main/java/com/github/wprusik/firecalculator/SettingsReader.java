@@ -26,7 +26,7 @@ public class SettingsReader {
     private static void readUserProperties() {
         File propertiesFile = getUserPropertiesFile();
         if (propertiesFile.exists()) {
-            System.out.printf("\n%sReading properties from file... %s", Ansi.WHITE.code(), Ansi.RESET.code());
+            System.out.printf("%s\nReading properties from file... %s", Ansi.WHITE.code(), Ansi.RESET.code());
             if (readProperties(propertiesFile)) {
                 System.out.printf("%sSettings successfully loaded.%s\n\n\n", Ansi.WHITE.code(), Ansi.RESET.code());
             }
