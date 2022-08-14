@@ -1,5 +1,5 @@
 # F.I.R.E. Calculator
-### Just a simple console application that facilitates the calculation of the F.I.R.E. strategy _(Financial Independence, Retired Early)_
+### Just a simple console application that facilitates the calculation of the F.I.R.E. strategy
 
 The application was made for my own use, but feel free to use it.
 
