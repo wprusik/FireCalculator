@@ -51,10 +51,6 @@ public enum Ansi {
     }
 
     public String code() {
-        return !isWindowsOS() || worksOnWindows ? code : "";
-    }
-
-    private boolean isWindowsOS() {
-        return System.getProperty("os.name").toLowerCase().startsWith("windows");
+        return Settings.ANSI_ENABLED || worksOnWindows ? code : "";
     }
 }

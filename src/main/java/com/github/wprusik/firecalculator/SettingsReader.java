@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.Properties;
 
 import static java.lang.String.valueOf;
@@ -47,14 +48,15 @@ public class SettingsReader {
     }
 
     private static void setVariables(Properties props) {
-        FireCalculator.MONTHLY_INCOME = getDoubleProperty(props, "savings.monthly-deposit", FireCalculator.MONTHLY_INCOME);
-        FireCalculator.YEARLY_INTEREST_RATE = getDoubleProperty(props, "savings.annual-interest", FireCalculator.YEARLY_INTEREST_RATE);
-            FireCalculator.CAPITALIZATION_PERIOD_MONTHS = getIntProperty(props, "savings.capitalization-period.months", FireCalculator.CAPITALIZATION_PERIOD_MONTHS);
-        FireCalculator.SAVING_START_DATE = getDateProperty(props, "savings.start-date.month-year", FireCalculator.SAVING_START_DATE);
-        FireCalculator.AVERAGE_ANNUAL_CAPITAL_RETURN_RATE = getDoubleProperty(props, "capital.average-annual-interest-rate", FireCalculator.AVERAGE_ANNUAL_CAPITAL_RETURN_RATE);
-        FireCalculator.MONTHLY_WITHDRAW = getDoubleProperty(props, "capital.withdraw.monthly-amount", FireCalculator.MONTHLY_WITHDRAW);
-        FireCalculator.WITHDRAW_PERIOD_YEARS = getIntProperty(props, "capital.withdraw.period.years", FireCalculator.WITHDRAW_PERIOD_YEARS);
-        FireCalculator.CURRENCY = props.getProperty("currency", FireCalculator.CURRENCY);
+        Settings.MONTHLY_INCOME = getDoubleProperty(props, "savings.monthly-deposit", Settings.MONTHLY_INCOME);
+        Settings.YEARLY_INTEREST_RATE = getDoubleProperty(props, "savings.annual-interest", Settings.YEARLY_INTEREST_RATE);
+        Settings.CAPITALIZATION_PERIOD_MONTHS = getIntProperty(props, "savings.capitalization-period.months", Settings.CAPITALIZATION_PERIOD_MONTHS);
+        Settings.SAVING_START_DATE = getDateProperty(props, "savings.start-date.month-year", Settings.SAVING_START_DATE);
+        Settings.AVERAGE_ANNUAL_CAPITAL_RETURN_RATE = getDoubleProperty(props, "capital.average-annual-interest-rate", Settings.AVERAGE_ANNUAL_CAPITAL_RETURN_RATE);
+        Settings.MONTHLY_WITHDRAW = getDoubleProperty(props, "capital.withdraw.monthly-amount", Settings.MONTHLY_WITHDRAW);
+        Settings.WITHDRAW_PERIOD_YEARS = getIntProperty(props, "capital.withdraw.period.years", Settings.WITHDRAW_PERIOD_YEARS);
+        Settings.CURRENCY = props.getProperty("currency", Settings.CURRENCY);
+        Optional.ofNullable(props.getProperty("ansi-support.enabled")).map(Boolean::valueOf).ifPresent(enabled -> Settings.ANSI_ENABLED = enabled);
     }
 
     private static Double getDoubleProperty(Properties props, String key, double defaultValue) {

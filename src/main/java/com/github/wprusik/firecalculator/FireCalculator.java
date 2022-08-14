@@ -1,24 +1,11 @@
 package com.github.wprusik.firecalculator;
 
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.time.LocalDate;
 
 import static com.github.wprusik.firecalculator.Ansi.*;
+import static com.github.wprusik.firecalculator.Settings.*;
 
 public class FireCalculator {
-
-    // default settings
-    static double MONTHLY_INCOME;                       // miesięczny przychód
-    static double YEARLY_INTEREST_RATE;                 // roczna stopa oprocentowania lokaty
-    static int CAPITALIZATION_PERIOD_MONTHS;            // okres kapitalizacji
-    static double AVERAGE_ANNUAL_CAPITAL_RETURN_RATE;   // średnia roczna stopa zwrotu z kapitału
-    static double MONTHLY_WITHDRAW;                     // miesięcznie będę wypłacał
-    static int WITHDRAW_PERIOD_YEARS;                   // przez x lat
-
-    static LocalDate SAVING_START_DATE = LocalDate.of(LocalDate.now().getYear() + 1, 1, 1);
-    static final NumberFormat CURRENCY_FORMAT = NumberFormat.getCurrencyInstance();
-    static String CURRENCY = CURRENCY_FORMAT.getCurrency().getDisplayName();
 
     public static void main(String... args) throws IOException {
         System.out.printf("\n\nWelcome to\n%s%s\n%s%s%s\n", RED.code(), FIRE_LOGO.code(), BLUE.code(), FIRE_SUBLOGO.code(), RESET.code());
@@ -36,7 +23,7 @@ public class FireCalculator {
         System.out.printf("\nAverage annual rate of return on capital: %s %%", AVERAGE_ANNUAL_CAPITAL_RETURN_RATE);
         double target = getInvestmentTarget();
         System.out.printf("\n\nTarget: %s%s%s%s\n", BOLD.code(), RED.code(), CURRENCY_FORMAT.format(target), RESET.code());
-        new TableBuilder().generateTable(target);
+        TableBuilder.generateTable(target);
     }
 
     private static double getInvestmentTarget() {

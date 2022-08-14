@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import static com.github.wprusik.firecalculator.Ansi.*;
-import static com.github.wprusik.firecalculator.FireCalculator.*;
+import static com.github.wprusik.firecalculator.Settings.*;
 
 public class TableBuilder {
 
