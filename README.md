@@ -3,7 +3,7 @@
 
 The application was made for my own use, but feel free to use it.
 
-To start application, use the jar file from binary directory.
+To start application, use the jar file from binary directory:
 
 ```
 java -jar ./FireCalculator.jar
