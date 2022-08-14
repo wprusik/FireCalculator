@@ -1,0 +1,60 @@
+package com.github.wprusik.firecalculator;
+
+public enum Ansi {
+    RESET( "\u001B[0m"),
+    BLACK("\u001B[30m"),
+    RED("\u001B[31m"),
+    GREEN("\u001B[32m"),
+    YELLOW("\u001B[33m"),
+    BLUE("\u001B[34m"),
+    PURPLE("\u001B[35m"),
+    CYAN("\u001B[36m"),
+    WHITE("\u001B[37m"),
+
+    BOLD("\u001B[1m"),
+    UNDERLINE("\u001b[4m"),
+
+    FIRE_LOGO("""
+             ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄     ▄▄▄▄▄▄▄▄▄▄▄     ▄▄▄▄▄▄▄▄▄▄▄\s
+            ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌   ▐░░░░░░░░░░░▌   ▐░░░░░░░░░░░▌
+            ▐░█▀▀▀▀▀▀▀▀▀  ▀▀▀▀█░█▀▀▀▀    ▐░█▀▀▀▀▀▀▀█░▌   ▐░█▀▀▀▀▀▀▀▀▀\s
+            ▐░▌               ▐░▌        ▐░▌       ▐░▌   ▐░▌         \s
+            ▐░█▄▄▄▄▄▄▄▄▄      ▐░▌        ▐░█▄▄▄▄▄▄▄█░▌   ▐░█▄▄▄▄▄▄▄▄▄\s
+            ▐░░░░░░░░░░░▌     ▐░▌        ▐░░░░░░░░░░░▌   ▐░░░░░░░░░░░▌
+            ▐░█▀▀▀▀▀▀▀▀▀      ▐░▌        ▐░█▀▀▀▀█░█▀▀    ▐░█▀▀▀▀▀▀▀▀▀\s
+            ▐░▌               ▐░▌        ▐░▌     ▐░▌     ▐░▌         \s
+            ▐░▌ ▄         ▄▄▄▄█░█▄▄▄▄  ▄ ▐░▌      ▐░▌  ▄ ▐░█▄▄▄▄▄▄▄▄▄\s
+            ▐░▌▐░▌       ▐░░░░░░░░░░░▌▐░▌▐░▌       ▐░▌▐░▌▐░░░░░░░░░░░▌
+             ▀  ▀         ▀▀▀▀▀▀▀▀▀▀▀  ▀  ▀         ▀  ▀  ▀▀▀▀▀▀▀▀▀▀▀\s
+                                                                     \s""".indent(11), true),
+
+    FIRE_SUBLOGO("""
+             ██████╗ █████╗ ██╗      ██████╗██╗   ██╗██╗      █████╗ ████████╗ ██████╗ ██████╗\s
+            ██╔════╝██╔══██╗██║     ██╔════╝██║   ██║██║     ██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
+            ██║     ███████║██║     ██║     ██║   ██║██║     ███████║   ██║   ██║   ██║██████╔╝
+            ██║     ██╔══██║██║     ██║     ██║   ██║██║     ██╔══██║   ██║   ██║   ██║██╔══██╗
+            ╚██████╗██║  ██║███████╗╚██████╗╚██████╔╝███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║
+             ╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
+                                                                                              \s""", true);
+
+    private final String code;
+    private final boolean worksOnWindows;
+
+    Ansi(String code) {
+        this.code = code;
+        this.worksOnWindows = false;
+    }
+
+    Ansi(String code, boolean worksOnWindows) {
+        this.code = code;
+        this.worksOnWindows = worksOnWindows;
+    }
+
+    public String code() {
+        return !isWindowsOS() || worksOnWindows ? code : "";
+    }
+
+    private boolean isWindowsOS() {
+        return System.getProperty("os.name").toLowerCase().startsWith("windows");
+    }
+}
