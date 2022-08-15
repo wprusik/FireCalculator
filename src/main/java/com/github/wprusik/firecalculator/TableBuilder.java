@@ -67,9 +67,8 @@ public class TableBuilder {
     }
 
     private static String withSpace(Double value) {
-        int formatterExtension = (",00 " + CURRENCY).length() + Double.valueOf(Math.pow(value, 1 / 1000F)).intValue();
-        int length = Double.valueOf(Math.log10(value)).intValue() + 1 + formatterExtension;
-        return CURRENCY_FORMAT.format(value) + getSpace(length);
+        String str = CURRENCY_FORMAT.format(value);
+        return str + getSpace(str.length());
     }
 
     private static String getSpace(int wordLength) {
