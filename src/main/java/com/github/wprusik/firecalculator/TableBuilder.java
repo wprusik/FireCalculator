@@ -14,13 +14,13 @@ public class TableBuilder {
 
     private static final String[] HEADERS = {"Date", "Income", "Savings"};
 
-    static void generateTable(double cel) {
+    static void generateTable(double target) {
         System.out.println("\n");
         double total = 0;
         int month = 0;
         LocalDate currentDate = LocalDate.from(SAVING_START_DATE);
         printHeaders(currentDate.getYear());
-        while (total < cel) {
+        while (total < target) {
             total += MONTHLY_INCOME;
             printRow(DATE_FORMAT.format(currentDate), MONTHLY_INCOME, total, null);
 
@@ -31,7 +31,7 @@ public class TableBuilder {
                 double interest = total * (YEARLY_INTEREST_RATE * (CAPITALIZATION_PERIOD_MONTHS / 12F) / 100F);
                 total += interest;
                 printRow("Interest capitalization", interest, total, PURPLE);
-                if (month % 12 == 0 && total < cel) {
+                if (month % 12 == 0 && total < target) {
                     printHeaders(currentDate.getYear());
                 }
             }
